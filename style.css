@@ -1,0 +1,632 @@
+/* General Reset and Base Styles */
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    background-color: #f9f9f9; /* Light grey background */
+    color: #333; /* Dark grey text */
+    line-height: 1.6;
+    min-height: 100vh; /* Ensure the body takes up at least the full viewport height */
+}
+
+h1, h2, h3 {
+    font-weight: 600;
+    color: #2c3e50; /* Dark blue headings */
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* Navbar */
+.navbar {
+    background-color: #fff; /* White navbar background */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Soft shadow */
+    padding: 1rem 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000; /* Ensure nav is on top */
+}
+
+.navbar-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    max-width: 1200px;
+    margin: 0 auto; /* Center the navbar content */
+}
+
+.nav-logo {
+    font-size: 1.8rem;
+    font-weight: 700;
+    transition: color 0.3s; /* Smooth color transition */
+}
+
+.nav-logo:hover {
+    color: #007bff; /* Blue on hover */
+}
+
+.nav-menu {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.nav-item {
+    position: relative; /* For positioning dropdown */
+    margin: 0 15px;
+}
+
+.nav-item:last-child {
+    margin-right: 0;
+}
+
+.nav-link {
+    font-size: 1.1rem;
+    font-weight: 500;
+    transition: color 0.3s;
+    padding: 0.5rem 1rem;
+    position: relative;
+    display: inline-block; /* for correct hover on all area*/
+}
+
+.nav-link:hover {
+    color: #007bff; /* Blue on hover */
+}
+
+.nav-popup {
+    display: none;
+    position: absolute;
+    background-color: #fff;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.1); /* Soft dropdown shadow */
+    padding: 10px 15px;
+    min-width: 250px;
+    top: 100%; /* Position under the link */
+    left: 50%;
+    transform: translateX(-50%); /* Center horizontally */
+    white-space: normal; /* Allow text to wrap */
+    z-index: 1001; /* Ensure it's above other elements */
+    text-align: left;
+    border-radius: 5px;
+}
+
+.nav-item:hover .nav-popup {
+    display: block;
+}
+
+.nav-popup p {
+    font-size: 0.9rem;
+    color: #555; /* Grey text in dropdown */
+}
+
+/* Menu Toggle for Mobile */
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    padding: 10px;
+    margin-left: 10px;
+}
+
+.bar {
+    width: 25px;
+    height: 3px;
+    background-color: #333;
+    margin: 3px 0;
+    transition: transform 0.3s;
+}
+
+/* Header */
+header {
+    text-align: center;
+    padding: 2rem 0;
+    background-color: #ffffff; /* White header background */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Soft header shadow */
+}
+
+header h1 {
+    margin-bottom: 0.5rem;
+    font-size: 2.5rem;
+}
+
+header p {
+    font-size: 1.1rem;
+    color: #777; /* Grey text in header */
+}
+
+/* Specialty header */
+.specialty-header {
+    text-align: center;
+    padding: 2rem 0;
+    background-color: #ffffff; /* White header background for specialty pages */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Soft header shadow */
+}
+
+.specialty-header h1 {
+    margin-bottom: 0.5rem;
+    font-size: 2.5rem;
+}
+
+.specialty-header p {
+    font-size: 1.1rem;
+    color: #777;
+}
+
+/* Member header */
+.member-header {
+    text-align: center;
+    padding: 1rem 0;
+}
+
+.member-header .back-link {
+    display: inline-block;
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+    transition: color 0.3s; /* Smooth color transition */
+    padding: 0.5rem 1rem;
+}
+
+.member-header .back-link:hover {
+    color: #444; /* Darker grey on hover */
+}
+
+/* Team Section */
+#team {
+    padding: 3rem 0;
+    text-align: center;
+}
+
+#team h2 {
+    margin-bottom: 2rem;
+    font-size: 2rem;
+}
+
+.team-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 2rem;
+    padding: 0 20px;
+}
+
+.team-member {
+    width: 280px;
+    text-align: center;
+    cursor: pointer;
+    padding: 1.5rem;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.05); /* Soft box shadow */
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.team-member:hover {
+    transform: translateY(-8px); /* Slight elevation on hover */
+    box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+}
+
+.team-member .image-wrapper {
+    border-radius: 50%;
+    overflow: hidden;
+    margin: 0 auto 1rem;
+    width: 150px;
+    height: 150px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Soft image shadow */
+}
+
+.team-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.3s; /* Smooth transition */
+}
+
+.team-member:hover .team-photo {
+    transform: scale(1.05);
+}
+
+.team-member h3 {
+    transition: color 0.3s, transform 0.2s;
+    font-size: 1.3rem;
+    margin-bottom: 0.4rem;
+}
+
+.team-member:hover h3 {
+    color: #007bff; /* Blue on hover */
+    transform: scale(1.1);
+}
+
+.team-member:active h3 {
+    transform: scale(0.9);
+    color: #0056b3;
+}
+
+.team-member p.role {
+    font-size: 1rem;
+    color: #777;
+    margin-bottom: 0;
+}
+
+/* Member Profile */
+#member-profile {
+    padding: 3rem 0;
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+    padding: 2rem;
+}
+
+#member-profile .member-content {
+    padding: 1rem 0;
+}
+
+#member-profile h1 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+#member-profile .image-wrapper {
+    border-radius: 50%;
+    overflow: hidden;
+    margin: 0 auto 1rem;
+    width: 180px;
+    height: 180px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+#member-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+#member-profile p {
+    font-size: 1.1rem;
+    color: #555;
+    margin-bottom: 1.5rem;
+}
+
+/* Skills List */
+.skills-list {
+    list-style: none;
+    padding: 0;
+    text-align: center;
+    display: inline-block;
+    margin-bottom: 1.5rem;
+}
+
+.skills-list li {
+    margin: 5px 10px;
+    font-size: 1rem;
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    background-color: #f0f0f0; /* Light grey skill background */
+    transition: transform 0.2s;
+}
+
+.skills-list li:hover {
+    transform: scale(1.1); /* Slightly enlarges on hover */
+}
+
+/* LinkedIn Link */
+#member-linkedin a {
+    text-decoration: none;
+    color: #0077b5; /* LinkedIn blue color */
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    display: inline-block;
+    border-radius: 5px;
+    border: 1px solid #0077b5; /* LinkedIn blue border */
+    transition: background-color 0.3s, color 0.3s; /* Transition for hover */
+}
+
+#member-linkedin a:hover {
+    background-color: #0077b5; /* LinkedIn blue background on hover */
+    color: #fff; /* White text on hover */
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 1.5rem;
+    background-color: #f2f2f2; /* Very light grey background */
+    border-top: 1px solid #eee; /* Light border */
+    font-size: 0.9rem;
+    color: #777;
+     position: relative; /* For proper positioning of the chatbox */
+      margin-top: 50px; /* Add margin to separate from the content */
+
+}
+
+/* Chatbox Icon */
+.chat-icon {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #007bff; /* Blue chat icon background */
+    color: white;
+    padding: 15px;
+    border-radius: 50%;
+    font-size: 24px;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Soft shadow */
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.chat-icon:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+    transform: scale(1.1);
+}
+
+/* Chatbox Container */
+.chatbox-container {
+    display: none; /* Initially hidden */
+    position: fixed;
+    bottom: 70px; /* Adjust as needed to make space for the chat icon */
+    right: 20px;
+    background-color: #fff; /* White chatbox background */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    z-index: 1000;
+    max-width: 400px; /* Set a max width for the container */
+    overflow-y: auto; /* Allows scroll if needed */
+    max-height: 500px;
+}
+
+.input-container {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1rem;
+}
+
+.input-container label {
+    margin-bottom: 0.5rem;
+}
+
+.input-container input {
+    padding: 0.8rem;
+    border: 1px solid #ddd; /* Light grey border */
+    border-radius: 5px;
+    margin-bottom: 0.5rem;
+}
+
+.input-container button {
+    background-color: #007bff; /* Blue button background */
+    color: white;
+    padding: 0.8rem 1.2rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s; /* Smooth transition for button */
+    margin-top: 0.5rem;
+}
+
+.input-container button:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+}
+
+#api-response-container {
+    display: none; /* Initially hidden */
+    padding: 1rem;
+    border-radius: 5px;
+    background-color: #f9f9f9; /* Light grey response area */
+    border: 1px solid #ddd; /* Light grey border */
+}
+
+#api-response-container pre {
+    white-space: pre-wrap; /* Allows text to wrap */
+    word-wrap: break-word;
+    font-family: 'Poppins', sans-serif;
+    line-height: 1.6;
+    font-size: 0.9rem;
+    color: #555; /* Darker text for the response */
+}
+
+/* Contact page */
+#contact-page {
+    padding: 3rem 0;
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+    padding: 2rem;
+}
+
+#contact-page h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+#contact-page p {
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+    color: #555;
+}
+
+.contact-details {
+    text-align: left;
+    margin-bottom: 1rem;
+}
+
+.contact-details p {
+    margin-bottom: 0.5rem;
+}
+
+.contact-details a {
+    color: #007bff; /* Blue links on contact page */
+    transition: color 0.3s; /* Transition for contact links */
+}
+
+.contact-details a:hover {
+    color: #0056b3; /* Darker blue on hover */
+}
+
+.social-media {
+    margin-top: 2rem;
+    text-align: center; /* Keep social media icons centered */
+}
+
+.social-links {
+    list-style: none;
+    padding: 0;
+    display: inline-flex;
+    gap: 1rem;
+    margin: 1rem 0;
+}
+
+.social-links a {
+    font-size: 1.5rem;
+    color: #555; /* Dark grey icons */
+    transition: color 0.3s; /* Smooth transition for icons */
+}
+
+.social-links a:hover {
+    color: #007bff; /* Blue icons on hover */
+}
+
+/* Specialty page styles */
+.specialty-page {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 20px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+}
+
+.specialty-content {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 2rem;
+    gap: 2rem;
+    justify-content: center;
+    align-items: center;
+}
+
+.specialty-image {
+    max-width: 400px;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.specialty-text {
+    flex: 1;
+    min-width: 300px;
+}
+
+.specialty-text h2 {
+    margin-bottom: 1rem;
+    font-size: 2rem;
+}
+
+.specialty-text h3 {
+    margin-bottom: 0.8rem;
+    font-size: 1.5rem;
+}
+
+.specialty-text ul {
+    list-style-type: disc; /* Use circles for bullet points */
+    padding-left: 20px;
+}
+
+.specialty-text li {
+    margin-bottom: 0.5rem;
+    font-size: 1.1rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+      .nav-menu {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+            text-align: center;
+            position: absolute;
+            top: 70px; /* adjust as needed */
+            right: 0;
+           background-color: #fff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 1rem 0;
+      }
+      .nav-menu.active {
+            display: flex;
+
+    }
+      .nav-item {
+        margin: 10px 0;
+
+    }
+
+        .menu-toggle {
+           display: flex;
+        }
+
+          .menu-toggle.active .bar:nth-child(1) {
+                transform: translateY(8px) rotate(45deg);
+
+        }
+        .menu-toggle.active .bar:nth-child(2) {
+                  opacity: 0;
+          }
+         .menu-toggle.active .bar:nth-child(3) {
+            transform: translateY(-8px) rotate(-45deg);
+           }
+      .nav-popup {
+            position: static;
+            transform: translateX(0);
+            min-width: 100%;
+                box-shadow: none;
+              text-align: center;
+            padding-left: 0;
+            padding-right: 0;
+
+        }
+
+  .nav-item:hover .nav-popup {
+        display: none;
+    }
+  .team-container{
+    padding: 0 10px;
+  }
+    .team-member {
+        width: 100%;
+         margin-bottom: 1rem;
+
+    }
+    #member-profile {
+        padding: 1.5rem;
+        margin: 0 1rem;
+    }
+     .skills-list li {
+            margin: 5px 5px;
+            font-size: 0.9rem;
+             padding: 0.4rem 0.8rem;
+    }
+    #member-profile p {
+            font-size: 1rem;
+            }
+       .specialty-content {
+        flex-direction: column;
+       }
+    .specialty-text {
+            min-width: auto;
+      }
+    .specialty-image{
+         max-width: 100%;
+
+    }
+}

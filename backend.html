@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Back-end Team</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+   <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="index.html" class="nav-logo">Infinty Team</a>
+            <ul class="nav-menu">
+               <li class="nav-item">
+                   <a href="frontend.html" class="nav-link">Front-end</a>
+                   <div class="nav-popup">
+                       <p>Our front-end developers craft beautiful and responsive user interfaces using the latest technologies.</p>
+                   </div>
+               </li>
+               <li class="nav-item">
+                    <a href="backend.html" class="nav-link">Back-end</a>
+                   <div class="nav-popup">
+                       <p>Our back-end developers build robust and efficient server-side applications that power our projects.</p>
+                   </div>
+               </li>
+               <li class="nav-item">
+                   <a href="cybersecurity.html" class="nav-link">Cybersecurity</a>
+                   <div class="nav-popup">
+                      <p>Our cybersecurity team ensures that our projects are protected from any threats and maintain high level of security.</p>
+                   </div>
+               </li>
+               <li class="nav-item">
+                   <a href="contact.html" class="nav-link">Contact Us</a>
+               </li>
+           </ul>
+            <div class="menu-toggle">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+    <header class="specialty-header">
+        <h1>Back-end Development</h1>
+        <p>Powering applications from the server-side</p>
+    </header>
+
+    <section class="specialty-page">
+    <div class="specialty-content">
+        <img src="./Assets/B1.jpg" alt="Back-end Development" class="specialty-image">
+         <div class="specialty-text">
+            <h2>What We Do</h2>
+            <p>Our back-end developers build the solid foundation that keeps your applications running smoothly. We focus on creating robust, scalable, and secure server-side logic using cutting-edge technologies and frameworks.</p>
+            <h3>Key Skills</h3>
+             <ul>
+                <li>Node.js</li>
+                <li>Python (Django/Flask)</li>
+                <li>PHP (Laravel)</li>
+                 <li>Database design (MySQL, PostgreSQL)</li>
+                <li>API development (RESTful, GraphQL)</li>
+                <li>Cloud Computing (AWS, Azure, GCP)</li>
+            </ul>
+        </div>
+        </div>
+    </section>
+    <footer>
+        <p>© 2024 Infinty Team. All rights reserved.</p>
+    </footer>
+      <!-- Chatbox Icon -->
+      <div class="chat-icon">
+        <i class="fas fa-comment-dots"></i>
+    </div>
+      <!-- Chatbox Container (Initially hidden) -->
+      <div class="chatbox-container" style="display: none;">
+        <section class="api-section">
+            <h2>API Interaction</h2>
+           <div class="input-container">
+               <label for="api-input">Enter Your Question:</label>
+               <input type="text" id="api-input" placeholder="Type your question here">
+               <button id="api-button">Submit</button>
+           </div>
+           <div id="api-response-container">
+             <pre id="api-response"></pre>
+             </div>
+        </section>
+    </div>
+    <script src="nav.js"></script>
+     <script>
+          const chatIcon = document.querySelector('.chat-icon');
+          const chatboxContainer = document.querySelector('.chatbox-container');
+
+          chatIcon.addEventListener('click', () => {
+              chatboxContainer.style.display = chatboxContainer.style.display === 'none' ? 'block' : 'none';
+          });
+              const apiInput = document.getElementById('api-input');
+              const apiButton = document.getElementById('api-button');
+              const apiResponse = document.getElementById('api-response');
+              const apiResponseContainer = document.getElementById('api-response-container');
+              const apiKey = "AIzaSyAvHvI06eYxgqENPwuQ6p9sL5kiFjmBq40"; // **REPLACE with your actual API key**
+
+                apiButton.addEventListener('click', async () => {
+                      const question = apiInput.value;
+                    apiResponseContainer.style.display = "block"; // Show the container
+                      apiResponse.textContent = ""; // Clear previous response
+                      if (!question.trim()) {
+                          apiResponse.textContent = "Please enter a question.";
+                          return;
+                      }
+                      apiResponse.textContent = "Thinking...";
+
+                      try {
+                          const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent`, {
+                              method: 'POST',
+                              headers: {
+                                  'Content-Type': 'application/json',
+                                  'x-goog-api-key': apiKey
+                              },
+                              body: JSON.stringify({
+                                  contents: [
+                                      {
+                                          parts: [
+                                              { text: question }
+                                          ]
+                                      }
+                                  ],
+                                  generationConfig: {
+                                      maxOutputTokens: 200,  // Adjust as needed
+                                      temperature: 0.7       // Adjust as needed
+                                  }
+                              })
+                          });
+
+                          if (!response.ok) {
+                              throw new Error(`HTTP error! Status: ${response.status} - ${response.statusText}`);
+                          }
+
+                          const data = await response.json();
+                          const generatedText = data.candidates[0].content.parts[0].text;
+
+                           // Split the text by newlines and wrap in <p> tags
+                        const formattedText = generatedText
+                         .split('\n')
+                        .map(line => `<p>${line}</p>`)
+                           .join('');
+
+                        apiResponse.innerHTML = formattedText;
+                      } catch (error) {
+                          apiResponse.textContent = 'Sorry, something went wrong. Please try again later.';
+                          console.error('Error:', error);
+                      }
+                  });
+      </script>
+</body>
+</html>
